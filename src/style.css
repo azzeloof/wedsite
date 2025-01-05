@@ -18,6 +18,8 @@
 
 body {
   font-family: "Raleway", serif !important;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 body:before {
@@ -43,6 +45,10 @@ body:before {
 /*
  * Header
  */
+
+.nav-link {
+  cursor:pointer;
+}
 
 .nav-masthead-light .nav-link {
   color: rgba(255, 255, 255, .5);

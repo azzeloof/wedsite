@@ -23,4 +23,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      // https://stackoverflow.com/questions/47391462/how-to-do-transition-effects-between-two-html-pages
+      window.transitionToPage = function(href) {
+        console.log(href);
+        document.querySelector('body').style.opacity = 0
+        setTimeout(function() { 
+          window.location.href = href;
+        }, 500);
+      }
+
+      document.addEventListener('DOMContentLoaded', function(event) {
+          document.querySelector('body').style.opacity = 1
+      })
+    </script>
   </head>
