@@ -37,4 +37,7 @@
           document.querySelector('body').style.opacity = 1
       })
     </script>
+    <link rel="stylesheet" href="mtg/css/mtg_custom.css" type="text/css">
+    <link href="mtg/css/mana.css" rel="stylesheet" type="text/css" />
+    <link href="mtg/css/keyrune.css" rel="stylesheet" type="text/css" />
   </head>

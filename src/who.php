@@ -29,6 +29,7 @@
             <p>Rather than drafting our friends as if we were picking teams for a game of dodgeball, we elected to have a combined wedding party.</p>
         </div>
 
+
         <div class="row py-2"> <!-- data-masonry='{"percentPosition": true }'>-->
             <?php
             $files = glob("party_profiles/*.php");
@@ -38,15 +39,18 @@
                 $profiles[] = $profile;
             }
             foreach($profiles as $profile) {
-                echo('<div class="col-lg-3 col-md-4 col-sm-12 profile-col">');
-                echo('<div class="card profile-card">');
-                echo('<img src="'.$profile->image.'" class="card-img-top">');
-                echo('<div class="card-body">');
-                echo('<h6>'.$profile->name.'</h6>');
-                echo('<p class="card-text">'.$profile->description.'</p>');
+                echo("<div class='mtg-card'>");
+                include("mtg/mtg-card.php");
                 echo('</div>');
-                echo('</div>');
-                echo('</div>');
+                #echo('<div class="col-lg-3 col-md-4 col-sm-12 profile-col">');
+                #echo('<div class="card profile-card">');
+                #echo('<img src="'.$profile->image.'" class="card-img-top">');
+                #echo('<div class="card-body">');
+                #echo('<h6>'.$profile->name.'</h6>');
+                #echo('<p class="card-text">'.$profile->description.'</p>');
+                #echo('</div>');
+                #echo('</div>');
+                #echo('</div>');
             }
             ?>
         </div>
