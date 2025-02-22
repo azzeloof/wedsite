@@ -8,7 +8,7 @@
 
   <main class="px-2">
     <h1>Sara & Adam Are Getting Married</h1>
-    <p class="lead">Sometime and someplace. More details to come once we figure them out.</p>
+    <p class="lead">On October 11th, 2025 in New Jersey</p>
     <!--
     <p class="lead">
       <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
