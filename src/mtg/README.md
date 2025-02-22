@@ -1,0 +1,1 @@
+Everything in this folder adapted from https://github.com/ronniemon/mtg-card-html
