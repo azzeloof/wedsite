@@ -40,6 +40,7 @@ body:before {
   background-image: url('images/cover.jpg');
   background-size: cover;
   background-position: bottom;
+
 }
 
 /*
@@ -178,3 +179,4 @@ body:before {
     margin-left: auto;
     margin-right: auto;
   }
+

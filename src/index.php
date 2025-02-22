@@ -5,6 +5,7 @@
     <div class="cover-container d-flex w-100 h-100 py-3 px-4 mx-auto flex-column">
     <?php include("menu.php");?>
 
+
   <main class="px-2">
     <h1>Sara & Adam Are Getting Married</h1>
     <p class="lead">Sometime and someplace. More details to come once we figure them out.</p>
