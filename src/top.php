@@ -26,6 +26,9 @@
     <script type="text/javascript">
       // https://stackoverflow.com/questions/47391462/how-to-do-transition-effects-between-two-html-pages
       window.transitionToPage = function(href) {
+        if (href != '/') {
+          href += '.php';
+        }
         console.log(href);
         document.querySelector('body').style.opacity = 0
         setTimeout(function() { 
