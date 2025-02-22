@@ -42,15 +42,6 @@
                 echo("<div class='mtg-card'>");
                 include("mtg/mtg-card.php");
                 echo('</div>');
-                #echo('<div class="col-lg-3 col-md-4 col-sm-12 profile-col">');
-                #echo('<div class="card profile-card">');
-                #echo('<img src="'.$profile->image.'" class="card-img-top">');
-                #echo('<div class="card-body">');
-                #echo('<h6>'.$profile->name.'</h6>');
-                #echo('<p class="card-text">'.$profile->description.'</p>');
-                #echo('</div>');
-                #echo('</div>');
-                #echo('</div>');
             }
             ?>
         </div>

@@ -28,14 +28,14 @@
 		</div>	
 		<header class="powerToughness">
 			<div>
-				<h2>1/1</h2>
+				<h2><?php echo($profile->powerToughness); ?></h2>
 			</div>
 		</header>
 		
 		<footer>
 			<p>100/100 C<br />
 			ABC ‧ EN - Ronniemon</p>
-			<h6>™ &amp; © 2016 Wizards of the Coast</h6>
+			<h6>™ &amp; © 2025 Cizards of the Woast</h6>
 		</footer>
 		
 		</article>

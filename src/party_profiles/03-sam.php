@@ -5,9 +5,10 @@ include_once('./classes/profile.php');
 $profile = new Profile();
 $profile->name = 'Sam Zeloof';
 $profile->type = 'Creature - Human Engineer';
-$profile->cost = '<i class="ms ms-g ms-cost ms-shadow"></i><i class="ms ms-2 ms-cost ms-shadow"></i>';
+$profile->cost = '<i class="ms ms-u ms-cost ms-shadow"></i><i class="ms ms-u ms-cost ms-shadow"></i>';
 $profile->image = '/party_profiles/images/sam.jpg';
-$profile->description = 'words';
-$profile->quote = 'quote';
+$profile->description = "Sam is Adam's brother and is far and away the smarter of the two. He taught Adam everything he knows about electronics, and is the CEO of Atomic Semi, a nanofab startub in California.";
+$profile->quote = 'This is inefficient.';
+$profile->powerToughness= "1/1";
 
 ?>
