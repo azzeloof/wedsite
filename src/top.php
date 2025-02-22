@@ -29,16 +29,15 @@
         if (href != '/') {
           href += '.php';
         }
-        console.log(href);
-        document.querySelector('body').style.opacity = 0
-        setTimeout(function() { 
+        document.querySelector('body').style.opacity = 0;
+        setTimeout(function() {
           window.location.href = href;
         }, 500);
       }
 
-      document.addEventListener('DOMContentLoaded', function(event) {
-          document.querySelector('body').style.opacity = 1
-      })
+      window.onpageshow = function(event) {
+        document.querySelector('body').style.opacity = 1;
+      }
     </script>
     <link rel="stylesheet" href="mtg/css/mtg_custom.css" type="text/css">
     <link href="mtg/css/mana.css" rel="stylesheet" type="text/css" />
