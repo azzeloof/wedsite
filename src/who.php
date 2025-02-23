@@ -19,7 +19,8 @@
             </div>
             <div class="col text-start">
                 <h3>Adam Zeloof</h3>
-                <p>is just some guy</p>
+                <p>is just some guy. Just kidding, he actually is a very cool guy who knows how to do anything and everything. His degree says mechanical engineer but he's also an electrical engineer, jewelry designer, photographer, website designer (including this one), IT expert, piano player, spreadsheet maker, radio operator, baker, watch enthusiast and cat parent.</p>
+                <p>Adam always says that everyone frustrates him, but don't be fooled he is very thoughtful and loyal to his friends and family. He moved to the UK for a year to be with Sara during grad school, and remembers all the little details about his friends. He loves Star Trek even though Sara won't watch it with him, and despite being a homebody he enjoys exploring the world with Sara.</p>
             </div>
         </div>
 
