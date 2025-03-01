@@ -6,7 +6,7 @@
     <?php include("menu.php");?>
     <div class="container my-5">
         <div class="row text-center">
-            <p>It would be weird if you've been invited to our wedding and don't know who we are, but just in case here's a bit about each of us:</p>
+            <p>It would be weird if you've been invited to our wedding and don't know who we are, but just in case here's a bit about each of us. If you can't tell, we wrote one another's.</p>
         </div>
         <div class="row">
             <div class="col text-end">

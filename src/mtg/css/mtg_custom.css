@@ -205,7 +205,7 @@
 	float: left;
 	display: inline-block;
 	}
-	
+
 /* flip animation styles and hover */	
 .mtg-card .flip-container {
 	perspective: 1000px;
@@ -234,23 +234,43 @@
 	
 }
 
-/* flip the pane when hovered */
-.mtg-card .flip-container:hover .flipper, .flip-container.hover .flipper {
-		transform: rotateY(180deg);
-	}
-	
-	/* front pane, placed above back */
-    .mtg-card .front {
-	z-index: 2;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
+@media (min-width: 801px) {
+    /* flip the pane when hovered */
+    .mtg-card .flip-container:hover .flipper, .flip-container.hover .flipper {
+            transform: rotateY(180deg);
+        }
+        
+        /* front pane, placed above back */
+        .mtg-card .front {
+        z-index: 2;
+        /* for firefox 31 */
+        transform: rotateY(0deg);
+    }
+
+    /* back, initially hidden pane */
+    .mtg-card .back {
+        transform: rotateY(180deg);
+    }
 }
 
-/* back, initially hidden pane */
-.mtg-card .back {
-	transform: rotateY(180deg);
-}
+@media (max-width: 800px) {
+    /* flip the pane when hovered */
+    .mtg-card .flip-container:hover .flipper, .flip-container.hover .flipper {
+            transform: none;
+        }
+        
+        /* front pane, placed above back */
+        .mtg-card .front {
+        z-index: 2;
+        /* for firefox 31 */
+        transform: none;
+    }
 
+    /* back, initially hidden pane */
+    .mtg-card .back {
+        transform: none;
+    }
+}
 
 
 

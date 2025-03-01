@@ -7,7 +7,7 @@
     <div class="container my-5">
     <h1>Sergeantsville, NJ</h1>
     <p>Address will be printed on the Invitation.</p>
-    <p>Lodging recommendations will be added here</p>
+    <p>Lodging recommendations will be added here.</p>
     </div>
 
 <?php include("bottom.php");?>
