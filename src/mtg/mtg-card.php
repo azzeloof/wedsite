@@ -34,7 +34,7 @@
 		
 		<footer>
 			<p>100/100 C<br />
-			ABC ‧ EN - Ronniemon</p>
+			ABC ‧ EN - Zeloof</p>
 			<h6>™ &amp; © 2025 Cizards of the Woast</h6>
 		</footer>
 		
