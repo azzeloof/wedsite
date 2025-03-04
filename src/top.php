@@ -42,4 +42,17 @@
     <link rel="stylesheet" href="mtg/css/mtg_custom.css" type="text/css">
     <link href="mtg/css/mana.css" rel="stylesheet" type="text/css" />
     <link href="mtg/css/keyrune.css" rel="stylesheet" type="text/css" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ET1ZEH437B"></script>
+    <script>
+      if (document.location.hostname == "saraismarryingadam.zeloof.xyz") {
+        // only track visits to the production copy, not the dev environment
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ET1ZEH437B');
+      }
+    </script>
   </head>
