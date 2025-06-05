@@ -67,11 +67,12 @@ $phone_number_1 = isset($_POST['phone_number_1']) ? trim($_POST['phone_number_1'
 $guest_2_exists_in_session = !empty($_SESSION['first_name_2']); // Or however you track this
 $guest_2_attending = null; // Default to null if guest 2 doesn't exist
 
+$email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
+$phone_number_2 = isset($_POST['phone_number_2']) ? trim($_POST['phone_number_2']) : null;
+
 if ($guest_2_exists_in_session) {
     $guest_2_attending_raw = isset($_POST['guest_2_attending']) ? $_POST['guest_2_attending'] : null;
     $guest_2_attending = ($guest_2_attending_raw === 'yes');
-    $email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
-    $phone_number_2 = isset($_POST['phone_number_2']) ? trim($_POST['phone_number_2']) : null
 }
 
 // Plus Ones
@@ -89,7 +90,8 @@ if ($plus_ones_allowed_from_session > 0) {
 }
 
 // Other fields
-$needs_transportation = isset($_POST['needs_transportation']) ? trim($_POST['needs_transportation']) : null;
+$needs_transportation_raw = isset($_POST['needs_transportation']) ? $_POST['needs_transportation'] : null;
+$needs_transportation = ($needs_transportation_raw === 'yes'); // true if 'yes', false otherwise
 $dietary_restrictions = isset($_POST['dietary_restrictions']) ? trim($_POST['dietary_restrictions']) : null;
 
 

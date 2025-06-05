@@ -138,10 +138,10 @@ if (isset($_SESSION['rsvp_error_message'])) {
                             <div class="col-auto">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <input type="email" class="form-control" id="email_1" placeholder="Email address"><?php $guest_data_from_db['email_1'] ?? '';?></input>
+                                        <input type="email" class="form-control" name="email_1" placeholder="Email address" value="<?php echo $guest_data_from_db['email_1'];?>">
                                     </div>
                                     <div class="col-auto">
-                                        <input type="tel" class="form-control" id="phone_number_1" placeholder="Phone number"><?php $guest_data_from_db['phone_number_1'] ?? '';?></input>
+                                        <input type="tel" class="form-control" name="phone_number_1" placeholder="Phone number" value="<?php echo $guest_data_from_db['phone_number_1'];?>">
                                     </div>
                                 </div>
                             </div>
@@ -160,10 +160,10 @@ if (isset($_SESSION['rsvp_error_message'])) {
                             <div class="col-auto">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <input type="email" class="form-control" id="email_2" placeholder="Email address"><?php $guest_data_from_db['email_2'] ?? '';?></input>
+                                        <input type="email" class="form-control" name="email_2" placeholder="Email address" value="<?php echo $guest_data_from_db['email_2'];?>">
                                     </div>
                                     <div class="col-auto">
-                                        <input type="tel" class="form-control" id="phone_number_2" placeholder="Phone number"><?php $guest_data_from_db['phone_number_2'] ?? '';?></input>
+                                        <input type="tel" class="form-control" name="phone_number_2" placeholder="Phone number" value="<?php echo $guest_data_from_db['phone_number_2'];?>">
                                     </div>
                                 </div>
                             </div>
