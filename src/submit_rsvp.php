@@ -132,7 +132,7 @@ try {
     }
 
     // 7. Success Feedback and Session Update
-    $_SESSION['rsvp_success_message'] = "Thank you, " . htmlspecialchars($greeting_name) . "! Your RSVP has been successfully submitted.";
+    $_SESSION['rsvp_success_message'] = "Thank you, " . $greeting_name . "! Your RSVP has been successfully submitted.";
     $_SESSION['has_rsvpd'] = true; // Update session so portal page can hide the form
 
     // Optional: Clear any temporary form data attempt from session

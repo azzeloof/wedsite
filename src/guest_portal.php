@@ -81,7 +81,7 @@ if (isset($_SESSION['rsvp_error_message'])) {
     <div class="d-flex w-100 h-100 py-3 px-4 mx-auto flex-column">
         <?php include("menu.php");?>
         <div class="container my-5">
-            <div class="row my-3 align-items-center"> <div class="col"> <h2>Guest Portal - Welcome, <?php echo $greeting_name; ?>!</h2>
+            <div class="row my-3 align-items-center"> <div class="col"> <h2>Guest Portal - Welcome, <?php echo htmlspecialchars($greeting_name); ?>!</h2>
                 </div>
                 <div class="col-auto"> <a href="logout.php" class="btn btn-outline-secondary">Logout</a>
                 </div>
