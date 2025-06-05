@@ -60,6 +60,9 @@ try {
 $guest_1_attending_raw = isset($_POST['guest_1_attending']) ? $_POST['guest_1_attending'] : null;
 $guest_1_attending = ($guest_1_attending_raw === 'yes'); // true if 'yes', false otherwise
 
+$email_1 = isset($_POST['email_1']) ? trim($_POST['email_1']) : null;
+$phone_number_1 = isset($_POST['phone_number_1']) ? trim($_POST['phone_number_1']) : null;
+
 // Guest 2 (process only if guest 2 exists based on session data)
 $guest_2_exists_in_session = !empty($_SESSION['first_name_2']); // Or however you track this
 $guest_2_attending = null; // Default to null if guest 2 doesn't exist
@@ -67,6 +70,8 @@ $guest_2_attending = null; // Default to null if guest 2 doesn't exist
 if ($guest_2_exists_in_session) {
     $guest_2_attending_raw = isset($_POST['guest_2_attending']) ? $_POST['guest_2_attending'] : null;
     $guest_2_attending = ($guest_2_attending_raw === 'yes');
+    $email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
+    $phone_number_2 = isset($_POST['phone_number_2']) ? trim($_POST['phone_number_2']) : null
 }
 
 // Plus Ones
@@ -84,6 +89,7 @@ if ($plus_ones_allowed_from_session > 0) {
 }
 
 // Other fields
+$needs_transportation = isset($_POST['needs_transportation']) ? trim($_POST['needs_transportation']) : null;
 $dietary_restrictions = isset($_POST['dietary_restrictions']) ? trim($_POST['dietary_restrictions']) : null;
 
 
@@ -93,6 +99,11 @@ try {
                     guest_1_attending = :guest_1_attending,
                     guest_2_attending = :guest_2_attending,
                     plus_ones_attending = :plus_ones_attending,
+                    email_1 = :email_1,
+                    phone_number_1 = :phone_number_1,
+                    email_2 = :email_2,
+                    phone_number_2 = :phone_number_2,
+                    needs_transportation = :needs_transportation,
                     dietary_restrictions = :dietary_restrictions,
                     has_rsvpd = TRUE,
                     submission_timestamp = NOW()
@@ -103,13 +114,23 @@ try {
     $stmt->execute([
         'guest_1_attending' => $guest_1_attending,
         'guest_2_attending' => $guest_2_attending, // Will be null if guest 2 doesn't exist or not attending
+        'email_1' => $email_1,
+        'phone_number_1' => $phone_number_1,
+        'email_2' => $email_2,
+        'phone_number_2' => $phone_number_2,
+        'needs_transportation' => $needs_transportation,
         'plus_ones_attending' => $plus_ones_attending_count,
         'dietary_restrictions' => $dietary_restrictions,
         'guest_id' => $guest_id_from_session
     ]);
 
+    $greeting_name = $_SESSION['first_name_1'];
+    if ($_SESSION['first_name_2']) {
+        $greeting_name .= " & " . $_SESSION['first_name_2'];
+    }
+
     // 7. Success Feedback and Session Update
-    $_SESSION['rsvp_success_message'] = "Thank you, " . htmlspecialchars($_SESSION['first_name_1']) . "! Your RSVP has been successfully submitted.";
+    $_SESSION['rsvp_success_message'] = "Thank you, " . htmlspecialchars($greeting_name) . "! Your RSVP has been successfully submitted.";
     $_SESSION['has_rsvpd'] = true; // Update session so portal page can hide the form
 
     // Optional: Clear any temporary form data attempt from session

@@ -138,10 +138,10 @@ if (isset($_SESSION['rsvp_error_message'])) {
                             <div class="col-auto">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <input type="email" class="form-control" id="email_1" placeholder="Email address">
+                                        <input type="email" class="form-control" id="email_1" placeholder="Email address"><?php $guest_data_from_db['email_1'] ?? '';?></input>
                                     </div>
                                     <div class="col-auto">
-                                        <input type="tel" class="form-control" id="phone_number_1" placeholder="Phone number">
+                                        <input type="tel" class="form-control" id="phone_number_1" placeholder="Phone number"><?php $guest_data_from_db['phone_number_1'] ?? '';?></input>
                                     </div>
                                 </div>
                             </div>
@@ -160,10 +160,10 @@ if (isset($_SESSION['rsvp_error_message'])) {
                             <div class="col-auto">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <input type="email" class="form-control" id="email_2" placeholder="Email address">
+                                        <input type="email" class="form-control" id="email_2" placeholder="Email address"><?php $guest_data_from_db['email_2'] ?? '';?></input>
                                     </div>
                                     <div class="col-auto">
-                                        <input type="tel" class="form-control" id="phone_number_2" placeholder="Phone number">
+                                        <input type="tel" class="form-control" id="phone_number_2" placeholder="Phone number"><?php $guest_data_from_db['phone_number_2'] ?? '';?></input>
                                     </div>
                                 </div>
                             </div>
@@ -180,8 +180,15 @@ if (isset($_SESSION['rsvp_error_message'])) {
                             <?php endfor; ?>
                         </select>
                     </div>
-                    <hr>
                     <?php endif; ?>
+                    <h5>Transportation</h5>
+                    <p>Will your party need transportation to and from the hotel (only on the day of the wedding)? Only available if you are staying at the hotel listed above and are planning on staying for the full duration of the reception.</p>
+                    <div class="mb-3">
+                        <div class="radio-group my-2">
+                            <label class="me-2"><input type="radio" name="needs_transportation" value="yes" <?php echo ($guest_data_from_db['needs_transportation'] ?? false) ? 'checked' : ''; ?>> Yes</label>
+                            <label><input type="radio" name="needs_transportation" value="no" <?php echo ($guest_data_from_db['needs_transportation'] === 0 || $guest_data_from_db['needs_transportation'] === false) ? 'checked' : ''; ?>> No</label>
+                        </div>
+                    </div>
                     <h5>Dietary Restrictions and Allergies</h5>
                     <div class="mb-3">
                         <textarea <?php if ($db_has_rsvpd && $guest_data_from_db): ?> disabled <?php endif; ?> name="dietary_restrictions" id="dietary_restrictions" rows="4" class="form-control" placeholder="e.g., gluten-free, nut allergy, etc."><?php echo htmlspecialchars($guest_data_from_db['dietary_restrictions'] ?? ''); ?></textarea>
