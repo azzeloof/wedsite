@@ -100,7 +100,7 @@ if (isset($_SESSION['rsvp_error_message'])) {
             <?php if ($rsvp_error_message): ?>
                 <div class="alert alert-danger"><?php echo htmlspecialchars($rsvp_error_message); ?></div>
             <?php endif; ?>
-
+            <hr>
             <div class="row my-3 portal-section" id="event-info">
                 <h2>Event Information</h2>
                 <?php 
