@@ -9,14 +9,24 @@
                 <div class="row py-3">
                     <h1>Sergeantsville, NJ</h1>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="row my-3">
-                        <p>The exact address will be printed on your invitation.</p>
-                        <p>The closest major airports are Philadelphia and Newark (Sergeantsville is about an hour drive from each). For international travelers, JFK is also a good option. The closest Amtrak station is in Trenton, about a half hour away. From New York and Newark, you can grab an NJ Transit train to Raritan Station, which is also about a half hour drive away. There will be plenty of parking available.</p>
-                        <p>Local lodging recommendations will be added here as we get closer to the date. If you need to plan your travel sooner just ask Adam or Sara!</p>
+                        <p>The exact address will be printed on your invitation, and is available in the <a href="/guest_login.php">Guest Portal</a>.</p>
+                        <h2>Travel</h2>
+                        <p>The closest major airports are Philadelphia and Newark (Sergeantsville is about an hour drive from each). For international travelers, JFK is also a good option. There's also a tiny airport in Ewing (TTN- 25 minutes from the farm) but you're not likely to find flights. The closest Amtrak station is in Trenton, about a half hour away. From New York and Newark, you can grab an NJ Transit train to Raritan Station, which is also about a half hour drive away. There will be plenty of parking available.</p>
+                        <h2>Lodging</h2>
+                        <p>We've found a couple of local options, ranging from standard hotel to cozy bed & breakfasts. If you won't be traveling with a car, or prefer not to drive (ubers are few and far between), please book the SpringHill Suites and be sure to indicate on the RSVP that you'll be needing transportation. Closer, but more expensive, options can be found in Lambertville/New Hope, Frenchtown, and Stockton. Some ideas are below:</p>
+                        <h4><a href="https://maps.app.goo.gl/RbZ32LD1qyDWwZFMA" target="blank">SpringHill Suites Ewing Princeton South</a></h4>
+                        <p>A large chain hotel right next to Trenton-Mercer Airport. Relativley cheap, but not a walkable area. Transportation to/from the wedding provided (but only at the start/end). We're working on getting a room block here, and more info will be available in the Guest Portal above (or just reach out to Adam and Sara if you need to book sooner).</p>
+                        <h4><a href="https://maps.app.goo.gl/bL196mV7Guh4WyPr8" target="blank">Woolverton Inn (Stockton)</a></h4>
+                        <p>Closest lodging option to the farm, but more expensive. There are sheep.</p>
+                        <h4><a href="https://maps.app.goo.gl/FAk1n7CK9R49bmTv8" target="blank">The Fox and the Hound (New Hope)</a></h4>
+                        <p>Lambertville and New Hope are great areas to walk around, with lots of small shops and cafes. This hotel is slightly outside of the center of town but may be more reasonably priced than others in the area.</p>
+                        <h4><a href="https://maps.app.goo.gl/8kCf8gPLeRLsDvKK7" target="blank">The National Hotel (Frenchtown)</a></h4>
+                        <p>Frenchtown is a wonderful small riverside town with a record store, a couple of coffee shops, and book stores.</p>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <img src="/images/map.png" width="100%"></img>
                 </div>
             </div>
