@@ -12,6 +12,7 @@
                 <div class="col-md-6">
                     <div class="row my-3">
                         <p>The exact address will be printed on your invitation, and is available in the <a href="/guest_login.php">Guest Portal</a>.</p>
+                        <p>Be sure to check out the schedule on the <a href="/when.php">When</a> page before booking any travel or accomodations.</p>
                         <h2>Travel</h2>
                         <p>The closest major airports are Philadelphia and Newark (Sergeantsville is about an hour drive from each). For international travelers, JFK is also a good option. There's also a tiny airport in Ewing (TTN- 25 minutes from the farm) but you're not likely to find flights. The closest Amtrak station is in Trenton, about a half hour away. From New York and Newark, you can grab an NJ Transit train to Raritan Station, which is also about a half hour drive away. There will be plenty of parking available.</p>
                         <h2>Lodging</h2>
