@@ -1,7 +1,19 @@
 <?php
 session_start();
 
-$db_config = require_once __DIR__ . '/../db_secrets.php';
+try {
+    if (! @include_once( __DIR__ . '/../db_secrets.php' ))
+        throw new Exception ('db_secrets.php does not exist');
+    else
+        $db_config = require_once __DIR__ . '/../db_secrets.php';
+}
+catch(Exception $e) {    
+    error_log("Database Configuration Error. Cannot open secrets.");
+    $_SESSION['auth_error'] = 'A technical error occurred. This is Adam\'s fault.';
+    header('Location: guest_login.php');
+    exit;
+}
+
 
 // --- PDO Database Connection ---
 try {
@@ -11,7 +23,7 @@ try {
 } catch (PDOException $e) {
     // Log detailed error to a server log file, not to the user.
     error_log("Database Connection Error: " . $e->getMessage());
-    $_SESSION['auth_error'] = 'A technical error occurred. Please try again later.';
+    $_SESSION['auth_error'] = 'A technical error occurred. This is Adam\'s fault.';
     header('Location: guest_login.php');
     exit;
 }
