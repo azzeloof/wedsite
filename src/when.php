@@ -20,12 +20,11 @@
                     <p>Food truck and closing DJ set in the barn</p>
                     <h1>Sunday October 12th, 2025</h1>
                     <p>If you're able to stick around on Sunday (Monday is a holiday), we'll be hanging out at the farm all day for breakfast, pumpkin carving, and a Barn Jam (concert) in the afternoon.</p>
-                    <p>Exact schedule to come later.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <img src="/images/tree.jpeg" width="100%"></img>
-                <p>by Pam Adkins</p>
+                <p class="text-center fw-lighter">by Pam Adkins</p>
             </div>
         </div>
     </div>
