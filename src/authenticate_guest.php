@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $referer = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+    $redirect = basename($referer) . '/?login';
+} else {
+    $redirect = 'what.php/?login';
+}
+
 try {
     if (! @include_once( __DIR__ . '/../db_secrets.php' ))
         throw new Exception ('db_secrets.php does not exist');
@@ -10,10 +17,9 @@ try {
 catch(Exception $e) {    
     error_log("Database Configuration Error. Cannot open secrets.");
     $_SESSION['auth_error'] = 'A technical error occurred. This is Adam\'s fault.';
-    header('Location: guest_login.php');
+    header('Location: ' . $redirect);
     exit;
 }
-
 
 // --- PDO Database Connection ---
 try {
@@ -24,7 +30,7 @@ try {
     // Log detailed error to a server log file, not to the user.
     error_log("Database Connection Error: " . $e->getMessage());
     $_SESSION['auth_error'] = 'A technical error occurred. This is Adam\'s fault.';
-    header('Location: guest_login.php');
+    header('Location: ' . $redirect);
     exit;
 }
 
@@ -36,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Basic validation for empty inputs
     if (empty($submitted_rsvp_code) || empty($submitted_last_name)) {
         $_SESSION['auth_error'] = 'Please enter both your code and last name.';
-        header('Location: guest_login.php');
+        header('Location: ' . $redirect);
         exit;
     }
 
@@ -84,24 +90,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Clear any previous auth errors
                 unset($_SESSION['auth_error']);
                 
-                header('Location: guest_portal.php'); // Redirect to the main RSVP form
+                header('Location: ' . $redirect); // Redirect to the main RSVP form
                 exit;
             }
         } else {
             // Code was correct, but last name didn't match records for that code
             $_SESSION['auth_error'] = 'The code is valid, but the last name does not match our records for that code. Please check your invitation.';
-            header('Location: guest_login.php');
+            header('Location: ' . $redirect);
             exit;
         }
     } else {
         // RSVP code not found in the database
         $_SESSION['auth_error'] = 'Invalid code or last name. Please check your invitation and try again.';
-        header('Location: guest_login.php');
+        header('Location: ' . $redirect);
         exit;
     }
 } else {
     // If accessed directly via GET or other methods, redirect to login
-    header('Location: guest_login.php');
+    header('Location: ' . $redirect);
     exit;
 }
 ?>
