@@ -119,7 +119,7 @@ if (isset($_SESSION['rsvp_error_message'])) {
                     <p>Thank you! Below are the details you submitted. If you need to make any changes, please reach out to Adam or Sara.</p>
                     <form> <fieldset disabled> 
                 <?php else: ?>
-                    <p>Kindly RSVP by July 11th, 2025</p>
+                    <p>Kindly RSVP by September 12th, 2025</p>
                     <p>Form submissions are final- if you need to amend your response, you'll have to reach out to Adam or Sara.</p>
                     <form action="submit_rsvp.php" method="POST">
                     <fieldset>
