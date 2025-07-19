@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if already RSVP'd
             if ($invitation_details['has_rsvpd']) {
                 $_SESSION['auth_error'] = 'It looks like you have already RSVP\'d. If you need to make changes, please contact us directly.';
-                header('Location: guest_login.php');
+                header('Location: guest_portal.php');
                 exit;
             } else {
                 // Authentication successful, store details in session
