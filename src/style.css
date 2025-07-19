@@ -11,6 +11,9 @@
   text-shadow: none; /* Prevent inheritance from `body` */
 }
 
+a {
+  color: #c97146
+}
 
 /*
  * Base structure
