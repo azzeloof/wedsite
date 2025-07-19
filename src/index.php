@@ -10,11 +10,6 @@
     <h1>Sara & Adam Are Getting Married</h1>
     <p class="lead">On October 11th, 2025 in New Jersey</p>
     <p><a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" role="button">RSVP Here</a></p>
-    <!--
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
-    </p>
-    -->
   </main>
 
 <?php include("bottom.php");?>

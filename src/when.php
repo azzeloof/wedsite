@@ -20,6 +20,13 @@
                     <p>Food truck and closing DJ set in the barn</p>
                     <h1>Sunday October 12th, 2025</h1>
                     <p>If you're able to stick around on Sunday (Monday is a holiday), we'll be hanging out at the farm all day for breakfast, pumpkin carving, and a Barn Jam (concert) in the afternoon.</p>
+                    <h3>10:00 am: Breakfast</h3>
+                    <p>Egg sandwiches, tea and coffee</p>
+                    <h3>11:00 am: Pumpkin Carving</h3>
+                    <p>Tools and pumpkins provided; prizes for the best pumpkins will be awarded by an elite panel of judges (Adam and Sara)</p>
+                    <h3>1:00 pm: Barn Jam</h3>
+                    <p>Join the house band BTE for a concert in the barn featuring our friends and family (yes thats you!). Reach out to Adam or Sara to add your performance to the set list, or come as an audience member. We'll have plently of instruments available to borrow. There will also be leftover wedding food and/or pizza for lunch! </p>
+                    <h3>4:00 pm: Barn Jam Ends</h3>
                 </div>
             </div>
             <div class="col-md-4">
