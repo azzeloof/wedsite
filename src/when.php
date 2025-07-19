@@ -20,7 +20,7 @@
                     <p>Food truck and closing DJ set in the barn</p>
 
                     <h1>Sunday October 12th, 2025</h1>
-                    <p>If you'd like to stick around for some of Sunday (Monday is a holiday), we'll be hanging out at the farm all day for (maybe) breakfast, pumpkin carving, and a Barn Jam (concert) in the afternoon.</p>
+                    <p>If you'd like to stick around for some of Sunday (Monday is a holiday), we'll be hanging out at the farm all day for pumpkin carving, and a Barn Jam concert in the afternoon.</p>
                     <!--<h3>10:00 am: Breakfast</h3>
                     <p>Egg sandwiches, tea and coffee</p>-->
                     <h3>11:00 am: Pumpkin Carving</h3>
