@@ -130,10 +130,16 @@ if (isset($_SESSION['rsvp_error_message'])) {
                         <h6><?php echo $first_name_1_session . ' ' . $last_name_1_session; ?> <span class="text-danger">*</span></h6>
                         <div class="row">
                             <div class="col-auto">
-                                <div class="radio-group my-2">
-                                    <label class="me-2"><input type="radio" name="guest_1_attending" value="yes" <?php echo ($guest_data_from_db['guest_1_attending'] ?? false) ? 'checked' : ''; ?> required> Yes, will attend</label>
-                                    <label><input type="radio" name="guest_1_attending" value="no" <?php echo ($guest_data_from_db['guest_1_attending'] === 0 || $guest_data_from_db['guest_1_attending'] === false) ? 'checked' : ''; ?> required> No, cannot attend</label>
-                                    <div class="invalid-feedback">Please select an option.</div>
+                                <div class="my-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="guest_1_attending" id="guest_1_attending_yes" value="yes" <?php echo ($guest_data_from_db['guest_1_attending'] ?? false) ? 'checked' : ''; ?> required>
+                                        <label class="form-check-label" for="guest_1_attending_yes">Yes, will attend</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="guest_1_attending" id="guest_1_attending_no" value="no" <?php echo ($guest_data_from_db['guest_1_attending'] === 0 || $guest_data_from_db['guest_1_attending'] === false) ? 'checked' : ''; ?> required>
+                                        <label class="form-check-label" for="guest_1_attending_no">No, cannot attend</label>
+                                        <div class="invalid-feedback">Please select an option.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -187,11 +193,17 @@ if (isset($_SESSION['rsvp_error_message'])) {
                     <?php endif; ?>
                     <h5>Transportation <span class="text-danger">*</span></h5>
                     <p>Will your party need transportation to and from the hotel (only on the day of the wedding)? Only available if you are staying at the hotel listed above and are planning on staying for the full duration of the reception.</p>
-                    <div class="mb-3">
-                        <div class="radio-group my-2">
-                            <label class="me-2"><input type="radio" name="needs_transportation" value="yes" <?php echo ($guest_data_from_db['needs_transportation'] ?? false) ? 'checked' : ''; ?> required> Yes</label>
-                            <label><input type="radio" name="needs_transportation" value="no" <?php echo ($guest_data_from_db['needs_transportation'] === 0 || $guest_data_from_db['needs_transportation'] === false) ? 'checked' : ''; ?> required> No</label>
-                            <div class="invalid-feedback">Please select an option.</div>
+                                        <div class="mb-3">
+                        <div class="my-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="needs_transportation" id="needs_transportation_yes" value="yes" <?php echo ($guest_data_from_db['needs_transportation'] ?? false) ? 'checked' : ''; ?> required>
+                                <label class="form-check-label" for="needs_transportation_yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="needs_transportation" id="needs_transportation_no" value="no" <?php echo ($guest_data_from_db['needs_transportation'] === 0 || $guest_data_from_db['needs_transportation'] === false) ? 'checked' : ''; ?> required>
+                                <label class="form-check-label" for="needs_transportation_no">No</label>
+                                <div class="invalid-feedback">Please select an option.</div>
+                            </div>
                         </div>
                     </div>
                     <h5>Dietary Restrictions and Allergies</h5>
