@@ -1,7 +1,6 @@
 import csv
 import random
-import mysql.connector # Or psycopg2 for PostgreSQL, etc.
-import csv
+import mysql.connector
 import sys
 sys.path.append("..")
 from db_secrets import DB_CONFIG
@@ -35,7 +34,6 @@ def main():
         names_string = guest_info['Name']
         names = names_string.split('&')
         if len(names) == 0:
-            # this should not happen
             print("error: " + names_string)
         elif len(names) == 1:
             name_split = names[0].strip().split(' ')
@@ -51,7 +49,6 @@ def main():
             first_name_2 = name_2_split[0].replace('_', ' ')
             last_name_2 = name_2_split[1].replace('_', ' ')
         else:
-            # this should not happen
             print("error: " + names_string)
         code = generate_unique_code(CODE_LENGTH, existing_codes)
         generated_guests_data.append({
@@ -65,7 +62,6 @@ def main():
         })
         print(f" {guest_info['Name']}: {code}")
 
-    # --- Database Insertion ---
     try:
         cnx = mysql.connector.connect(**DB_CONFIG)
         cursor = cnx.cursor()
