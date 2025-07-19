@@ -88,8 +88,10 @@ if (isset($_SESSION['rsvp_error_message'])) {
                     <p>Your RSVP has been Recorded...</p>
                     <form><fieldset disabled> </fieldset></form>
                 <?php else: ?>
-                    <p>Kindly RSVP by September 12th, 2025.</p>
-                    
+
+                    <p>Kindly RSVP by September 12th, 2025</p>
+                    <p>Form submissions are final- if you need to amend your response, you'll have to reach out to Adam or Sara.</p>
+
                     <form action="submit_rsvp.php" method="POST" class="needs-validation" novalidate>
                     <fieldset>
                     <p class="text-muted"><small><span class="text-danger">*</span> Indicates a required field.</small></p>
@@ -99,23 +101,25 @@ if (isset($_SESSION['rsvp_error_message'])) {
 
                     <div class="row mx-1 my-3">
                         <h6><?php echo $first_name_1_session . ' ' . $last_name_1_session; ?> <span class="text-danger">*</span></h6>
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
+
+                        <div class="row">
+                            <div class="col-auto">
                                 <div class="radio-group my-2">
-                                    <label class="me-2"><input type="radio" name="guest_1_attending" value="yes" required> Yes, will attend</label>
-                                    <label><input type="radio" name="guest_1_attending" value="no" required> No, cannot attend</label>
-                                    <div class="invalid-feedback">Please select an attendance option.</div>
+                                    <label class="me-2"><input type="radio" name="guest_1_attending" value="yes" <?php echo ($guest_data_from_db['guest_1_attending'] ?? false) ? 'checked' : ''; ?> required> Yes, will attend</label>
+                                    <label><input type="radio" name="guest_1_attending" value="no" <?php echo ($guest_data_from_db['guest_1_attending'] === 0 || $guest_data_from_db['guest_1_attending'] === false) ? 'checked' : ''; ?> required> No, cannot attend</label>
+                                    <div class="invalid-feedback">Please select an option.</div>
                                 </div>
                             </div>
-                            <div class="col-md-8">
-                                <div class="row" data-contact-group="guest_1_contact">
-                                    <div class="col-lg-6 mb-2">
-                                        <label for="email_1" class="form-label">Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" name="email_1" id="email_1" placeholder="Email address" required>
+                            <div class="col-auto">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <input type="email" class="form-control" name="email_1" placeholder="Email address *" value="<?php echo $guest_data_from_db['email_1'];?>" required>
+                                        <div class="invalid-feedback">Please provide a valid email address.</div>
                                     </div>
-                                    <div class="col-lg-6 mb-2">
-                                        <label for="phone_number_1" class="form-label">Phone <span class="text-danger">*</span></label>
-                                        <input type="tel" class="form-control" name="phone_number_1" id="phone_number_1" placeholder="Phone number" required>
+                                    <div class="col-auto">
+                                        <input type="tel" class="form-control" name="phone_number_1" placeholder="Phone number *" value="<?php echo $guest_data_from_db['phone_number_1'];?>" required>
+                                        <div class="invalid-feedback">Please provide a phone number.</div>
+
                                     </div>
                                     <div class="col-12"><div class="invalid-feedback">Please provide an email or a phone number.</div></div>
                                 </div>
@@ -126,12 +130,14 @@ if (isset($_SESSION['rsvp_error_message'])) {
                     <?php if ($first_name_2_session): ?>
                     <div class="row mx-1 my-3">
                         <h6><?php echo $first_name_2_session . ' ' . $last_name_2_session; ?> <span class="text-danger">*</span></h6>
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
+
+                        <div class="row">
+                            <div class="col-auto">
                                 <div class="radio-group my-2">
-                                    <label class="me-2"><input type="radio" name="guest_2_attending" value="yes" required> Yes, will attend</label>
-                                    <label><input type="radio" name="guest_2_attending" value="no" required> No, cannot attend</label>
-                                    <div class="invalid-feedback">Please select an attendance option.</div>
+                                    <label class="me-2"><input type="radio" name="guest_2_attending" value="yes" <?php echo ($guest_data_from_db['guest_2_attending'] ?? false) ? 'checked' : ''; ?> required> Yes, will attend</label>
+                                    <label><input type="radio" name="guest_2_attending" value="no" <?php echo ($guest_data_from_db['guest_2_attending'] === 0 || $guest_data_from_db['guest_2_attending'] === false) ? 'checked' : ''; ?> required> No, cannot attend</label>
+                                    <div class="invalid-feedback">Please select an option.</div>
+
                                 </div>
                             </div>
                             <div class="col-md-8"> <div class="row">
@@ -142,21 +148,52 @@ if (isset($_SESSION['rsvp_error_message'])) {
                         </div>
                     </div>
                     <?php endif; ?>
-
+                    <?php if ($plus_ones_allowed_session > 0): ?>
+                    <h5>Additional Guest(s)</h5>
+                    <p>Your invitation allows for <?php echo $plus_ones_allowed_session; ?> additional guest(s).</p>
+                    <div class="mb-3">
+                        <select name="plus_ones_attending_count" id="plus_ones_attending_count" class="form-select" style="width: auto;">
+                            <?php for ($i = 0; $i <= $plus_ones_allowed_session; $i++): ?>
+                            <option value="<?php echo $i; ?>" <?php echo (isset($guest_data_from_db['plus_ones_attending']) && $guest_data_from_db['plus_ones_attending'] == $i) ? 'selected' : ''; ?>><?php echo $i; ?> guest(s)</option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                    <?php endif; ?>
                     <h5>Transportation <span class="text-danger">*</span></h5>
-                    <p>Will your party need transportation to and from the hotel?</p>
+                    <p>Will your party need transportation to and from the hotel (only on the day of the wedding)? Only available if you are staying at the hotel listed above and are planning on staying for the full duration of the reception.</p>
                     <div class="mb-3">
                         <div class="radio-group my-2">
-                            <label class="me-2"><input type="radio" name="needs_transportation" value="yes" required> Yes</label>
-                            <label><input type="radio" name="needs_transportation" value="no" required> No</label>
-                            <div class="invalid-feedback">Please select a transportation option.</div>
+                            <label class="me-2"><input type="radio" name="needs_transportation" value="yes" <?php echo ($guest_data_from_db['needs_transportation'] ?? false) ? 'checked' : ''; ?> required> Yes</label>
+                            <label><input type="radio" name="needs_transportation" value="no" <?php echo ($guest_data_from_db['needs_transportation'] === 0 || $guest_data_from_db['needs_transportation'] === false) ? 'checked' : ''; ?> required> No</label>
+                            <div class="invalid-feedback">Please select an option.</div>
+
                         </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit RSVP</button>
                     </fieldset>
                 </form>
-                <?php endif; ?>
-            </div>
-        </div>
+
+                    </div></div>
+        <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
         <?php include("bottom.php");?>
