@@ -18,10 +18,11 @@
                     <p>Dinner buffet, live music and dancing in the barn</p>
                     <h3>10:30 pm: Late Night Snack</h3>
                     <p>Food truck and closing DJ set in the barn</p>
+
                     <h1>Sunday October 12th, 2025</h1>
-                    <p>If you're able to stick around on Sunday (Monday is a holiday), we'll be hanging out at the farm all day for breakfast, pumpkin carving, and a Barn Jam (concert) in the afternoon.</p>
-                    <h3>10:00 am: Breakfast</h3>
-                    <p>Egg sandwiches, tea and coffee</p>
+                    <p>If you'd like to stick around for some of Sunday (Monday is a holiday), we'll be hanging out at the farm all day for (maybe) breakfast, pumpkin carving, and a Barn Jam (concert) in the afternoon.</p>
+                    <!--<h3>10:00 am: Breakfast</h3>
+                    <p>Egg sandwiches, tea and coffee</p>-->
                     <h3>11:00 am: Pumpkin Carving</h3>
                     <p>Tools and pumpkins provided; prizes for the best pumpkins will be awarded by an elite panel of judges (Adam and Sara)</p>
                     <h3>1:00 pm: Barn Jam</h3>
