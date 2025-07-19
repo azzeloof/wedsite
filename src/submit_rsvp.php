@@ -91,7 +91,7 @@ if ($plus_ones_allowed_from_session > 0) {
 
 // Other fields
 $needs_transportation_raw = isset($_POST['needs_transportation']) ? $_POST['needs_transportation'] : null;
-$needs_transportation = ($needs_transportation_raw === 'yes'); // true if 'yes', false otherwise
+$needs_transportation = ($needs_transportation_raw === 'yes') ? 1 : 0;
 $dietary_restrictions = isset($_POST['dietary_restrictions']) ? trim($_POST['dietary_restrictions']) : null;
 
 
