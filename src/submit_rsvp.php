@@ -1,5 +1,42 @@
 <?php
+// submit_rsvp.php
+
 session_start();
+$errors = [];
+
+// --- Validation Block ---
+
+// 1. Guest 1 Attending
+if (empty($_POST['guest_1_attending'])) {
+    $errors[] = "Please select an attendance option for Guest 1.";
+}
+
+// 2. Guest 1 Contact Info (at least one is required)
+if (empty($_POST['email_1']) && empty($_POST['phone_number_1'])) {
+    $errors[] = "Please provide an email or phone number for Guest 1.";
+}
+
+// 3. Guest 2 Attending (only if Guest 2 exists on the invitation)
+// You'll need to fetch this from the DB or session to know if you should validate it.
+// Assuming you have a session variable for this:
+if (isset($_SESSION['first_name_2']) && !empty($_SESSION['first_name_2'])) {
+    if (empty($_POST['guest_2_attending'])) {
+        $errors[] = "Please select an attendance option for Guest 2.";
+    }
+}
+
+// 4. Transportation
+if (empty($_POST['needs_transportation'])) {
+    $errors[] = "Please select a transportation option.";
+}
+
+// --- If there are errors, redirect back with a message ---
+if (!empty($errors)) {
+    // Join all error messages into a single string.
+    $_SESSION['rsvp_error_message'] = implode('<br>', $errors);
+    header('Location: guest_portal.php');
+    exit;
+}
 
 // 1. Check if user is authenticated
 if (!isset($_SESSION['guest_id'])) {
@@ -66,14 +103,14 @@ if (isset($_POST['guest_1_attending'])) {
     $missing_data = true;
 }
 
-if (isset('email_1')) {
+if (isset($_POST['email_1'])) {
     $email_1 = trim($_POST['email_1']);
 } else {
     $email_1 = null;
     $missing_data = true;
 }
 
-if (isset('phone_number_1')) {
+if (isset($_POST['phone_number_1'])) {
     $phone_number_1 = trim($_POST['phone_number_1']);
 } else {
     $phone_number_1 = null;
