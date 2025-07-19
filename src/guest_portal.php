@@ -81,27 +81,53 @@ if (isset($_SESSION['rsvp_error_message'])) {
     <div class="d-flex w-100 h-100 py-3 px-4 mx-auto flex-column">
         <?php include("menu.php");?>
         <div class="container my-5">
+            <div class="row my-3 align-items-center"> <div class="col"> <h2>Guest Portal - Welcome, <?php echo htmlspecialchars($greeting_name); ?>!</h2>
+                </div>
+                <div class="col-auto"> <a href="logout.php" class="btn btn-outline-secondary">Logout</a>
+                </div>
+            </div>
+
+            <?php if (isset($db_connection_error)): ?>
+                <div class="alert alert-danger"><?php echo htmlspecialchars($db_connection_error); ?></div>
+            <?php endif; ?>
+            <?php if (isset($db_fetch_error)): ?>
+                <div class="alert alert-warning"><?php echo htmlspecialchars($db_fetch_error); ?></div>
+            <?php endif; ?>
+
+            <?php if ($rsvp_success_message): ?>
+                <div class="alert alert-success"><?php echo htmlspecialchars($rsvp_success_message); ?></div>
+            <?php endif; ?>
+            <?php if ($rsvp_error_message): ?>
+                <div class="alert alert-danger"><?php echo htmlspecialchars($rsvp_error_message); ?></div>
+            <?php endif; ?>
+            <hr>
+            <div class="row my-3 portal-section" id="event-info">
+                <h2>Event Information</h2>
+                <?php 
+                    if (file_exists(__DIR__ . '/../event_info.php')) {
+                        include(__DIR__ . '/../event_info.php'); 
+                    } else {
+                        echo "<p><em>Event details will appear here. (event_info.php not found)</em></p>";
+                    }
+                ?>
+            </div>
             <hr>
             <h3>RSVP</h3>
-            <div class="row my-3 portal-section" id="rsvp-section">
+            <div class="row my-3 portal-section" id="rsvp-section"> 
                 <?php if ($db_has_rsvpd && $guest_data_from_db): ?>
-                    <p>Your RSVP has been Recorded...</p>
-                    <form><fieldset disabled> </fieldset></form>
+                    <p>Your RSVP has been Recorded</p>
+                    <p>Thank you! Below are the details you submitted. If you need to make any changes, please reach out to Adam or Sara.</p>
+                    <form> <fieldset disabled> 
                 <?php else: ?>
-
                     <p>Kindly RSVP by September 12th, 2025</p>
                     <p>Form submissions are final- if you need to amend your response, you'll have to reach out to Adam or Sara.</p>
-
                     <form action="submit_rsvp.php" method="POST" class="needs-validation" novalidate>
                     <fieldset>
-                    <p class="text-muted"><small><span class="text-danger">*</span> Indicates a required field.</small></p>
-
+                <?php endif; ?>
                     <h5>Guest Info</h5>
                     <input type="hidden" name="guest_id" value="<?php echo $guest_id_from_session; ?>">
-
                     <div class="row mx-1 my-3">
                         <h6><?php echo $first_name_1_session . ' ' . $last_name_1_session; ?> <span class="text-danger">*</span></h6>
-
                         <div class="row">
                             <div class="col-auto">
                                 <div class="radio-group my-2">
@@ -119,30 +145,30 @@ if (isset($_SESSION['rsvp_error_message'])) {
                                     <div class="col-auto">
                                         <input type="tel" class="form-control" name="phone_number_1" placeholder="Phone number *" value="<?php echo $guest_data_from_db['phone_number_1'];?>" required>
                                         <div class="invalid-feedback">Please provide a phone number.</div>
-
                                     </div>
-                                    <div class="col-12"><div class="invalid-feedback">Please provide an email or a phone number.</div></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <?php if ($first_name_2_session): ?>
+                    <?php if ($first_name_2_session): // If a second named guest exists on the invitation ?>
                     <div class="row mx-1 my-3">
                         <h6><?php echo $first_name_2_session . ' ' . $last_name_2_session; ?> <span class="text-danger">*</span></h6>
-
                         <div class="row">
                             <div class="col-auto">
                                 <div class="radio-group my-2">
                                     <label class="me-2"><input type="radio" name="guest_2_attending" value="yes" <?php echo ($guest_data_from_db['guest_2_attending'] ?? false) ? 'checked' : ''; ?> required> Yes, will attend</label>
                                     <label><input type="radio" name="guest_2_attending" value="no" <?php echo ($guest_data_from_db['guest_2_attending'] === 0 || $guest_data_from_db['guest_2_attending'] === false) ? 'checked' : ''; ?> required> No, cannot attend</label>
                                     <div class="invalid-feedback">Please select an option.</div>
-
                                 </div>
                             </div>
-                            <div class="col-md-8"> <div class="row">
-                                    <div class="col-lg-6 mb-2"><input type="email" class="form-control" name="email_2" placeholder="Email address"></div>
-                                    <div class="col-lg-6 mb-2"><input type="tel" class="form-control" name="phone_number_2" placeholder="Phone number"></div>
+                            <div class="col-auto">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <input type="email" class="form-control" name="email_2" placeholder="Email address" value="<?php echo $guest_data_from_db['email_2'];?>">
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="tel" class="form-control" name="phone_number_2" placeholder="Phone number" value="<?php echo $guest_data_from_db['phone_number_2'];?>">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -166,14 +192,16 @@ if (isset($_SESSION['rsvp_error_message'])) {
                             <label class="me-2"><input type="radio" name="needs_transportation" value="yes" <?php echo ($guest_data_from_db['needs_transportation'] ?? false) ? 'checked' : ''; ?> required> Yes</label>
                             <label><input type="radio" name="needs_transportation" value="no" <?php echo ($guest_data_from_db['needs_transportation'] === 0 || $guest_data_from_db['needs_transportation'] === false) ? 'checked' : ''; ?> required> No</label>
                             <div class="invalid-feedback">Please select an option.</div>
-
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Submit RSVP</button>
+                    <h5>Dietary Restrictions and Allergies</h5>
+                    <div class="mb-3">
+                        <textarea <?php if ($db_has_rsvpd && $guest_data_from_db): ?> disabled <?php endif; ?> name="dietary_restrictions" id="dietary_restrictions" rows="4" class="form-control" placeholder="e.g., gluten-free, nut allergy, etc."><?php echo htmlspecialchars($guest_data_from_db['dietary_restrictions'] ?? ''); ?></textarea>
+                    </div>
+                    <br>
+                    <input type="submit" value="Submit RSVP" <?php if ($db_has_rsvpd && $guest_data_from_db): ?> class="btn btn-secondary" <?php else: ?> class="btn btn-primary" <?php endif; ?> <?php if ($db_has_rsvpd && $guest_data_from_db): ?> disabled <?php endif; ?>>
                     </fieldset>
                 </form>
-
                     </div></div>
         <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -196,4 +224,5 @@ if (isset($_SESSION['rsvp_error_message'])) {
   })
 })()
 </script>
-        <?php include("bottom.php");?>
+
+        <?php include("bottom.php");?> 
