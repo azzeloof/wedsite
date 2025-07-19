@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['guest_id'])) {
     // Optional: Set a message for the login page
     // $_SESSION['login_message'] = "Please log in to access the guest portal.";
-    header('Location: guest_login.php');
+    header('Location: index.php');
     exit;
 }
 
