@@ -71,43 +71,53 @@ unset($_SESSION['rsvp_error_message']);
     <div class="d-flex w-100 h-100 py-3 px-4 mx-auto flex-column">
         <?php include("menu.php");?>
         <div class="container my-5">
+            <div class="row my-3 align-items-center">
+                <div class="col"> <h2>Guest Portal - Welcome, <?php echo htmlspecialchars($greeting_name); ?>!</h2></div>
+                <div class="col-auto"> <a href="logout.php" class="btn btn-outline-secondary">Logout</a></div>
+            </div>
+
+            <?php if (isset($db_connection_error)): ?><div class="alert alert-danger"><?php echo htmlspecialchars($db_connection_error); ?></div><?php endif; ?>
+            <?php if (isset($db_fetch_error)): ?><div class="alert alert-warning"><?php echo htmlspecialchars($db_fetch_error); ?></div><?php endif; ?>
+            <?php if ($rsvp_success_message): ?><div class="alert alert-success"><?php echo htmlspecialchars($rsvp_success_message); ?></div><?php endif; ?>
+            <?php if ($rsvp_error_message): ?><div class="alert alert-danger"><?php echo htmlspecialchars($rsvp_error_message); ?></div><?php endif; ?>
             <hr>
+            
+            <div class="row my-3 portal-section" id="event-info">
+                <h2>Event Information</h2>
+                <?php include_once(__DIR__ . '/../event_info.php'); ?>
+            </div>
+            <hr>
+            
             <h3>RSVP</h3>
-            <div class="row my-3 portal-section" id="rsvp-section">
+            <div class="row my-3 portal-section" id="rsvp-section"> 
                 <?php if ($db_has_rsvpd && $guest_data_from_db): ?>
-                    <p>Your RSVP has been Recorded...</p>
-                    <form><fieldset disabled> </fieldset></form>
+                    <p>Your RSVP has been Recorded</p>
+                    <p>Thank you! Below are the details you submitted. If you need to make any changes, please reach out to Adam or Sara.</p>
+                    <form> <fieldset disabled> 
                 <?php else: ?>
-                    <p>Kindly RSVP by September 12th, 2025.</p>
-                    
+                    <p>Kindly RSVP by September 12th, 2025</p>
+                    <p>Form submissions are final- if you need to amend your response, you'll have to reach out to Adam or Sara.</p>
                     <form action="submit_rsvp.php" method="POST" class="needs-validation" novalidate>
                     <fieldset>
-                    <p class="text-muted"><small><span class="text-danger">*</span> Indicates a required field.</small></p>
-
+                <?php endif; ?>
+                
                     <h5>Guest Info</h5>
                     <input type="hidden" name="guest_id" value="<?php echo $guest_id_from_session; ?>">
-
+                    
                     <div class="row mx-1 my-3">
-                        <h6><?php echo $first_name_1_session . ' ' . $last_name_1_session; ?> <span class="text-danger">*</span></h6>
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
+                        <h6><?php echo $first_name_1_session . ' ' . $last_name_1_session; ?></h6>
+                        <div class="row">
+                            <div class="col-auto">
                                 <div class="radio-group my-2">
-                                    <label class="me-2"><input type="radio" name="guest_1_attending" value="yes" required> Yes, will attend</label>
-                                    <label><input type="radio" name="guest_1_attending" value="no" required> No, cannot attend</label>
-                                    <div class="invalid-feedback">Please select an attendance option.</div>
+                                    <label class="me-2"><input type="radio" name="guest_1_attending" value="yes" <?php echo ($guest_data_from_db['guest_1_attending'] ?? false) ? 'checked' : ''; ?> required> Yes, will attend</label>
+                                    <label><input type="radio" name="guest_1_attending" value="no" <?php echo ($guest_data_from_db['guest_1_attending'] === 0) ? 'checked' : ''; ?> required> No, cannot attend</label>
+                                    <div class="invalid-feedback">Please select an option.</div>
                                 </div>
                             </div>
-                            <div class="col-md-8">
-                                <div class="row" data-contact-group="guest_1_contact">
-                                    <div class="col-lg-6 mb-2">
-                                        <label for="email_1" class="form-label">Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" name="email_1" id="email_1" placeholder="Email address" required>
-                                    </div>
-                                    <div class="col-lg-6 mb-2">
-                                        <label for="phone_number_1" class="form-label">Phone <span class="text-danger">*</span></label>
-                                        <input type="tel" class="form-control" name="phone_number_1" id="phone_number_1" placeholder="Phone number" required>
-                                    </div>
-                                    <div class="col-12"><div class="invalid-feedback">Please provide an email or a phone number.</div></div>
+                            <div class="col-auto">
+                                <div class="row">
+                                    <div class="col-auto"><input type="email" class="form-control" name="email_1" placeholder="Email address" value="<?php echo htmlspecialchars($guest_data_from_db['email_1'] ?? '');?>"></div>
+                                    <div class="col-auto"><input type="tel" class="form-control" name="phone_number_1" placeholder="Phone number" value="<?php echo htmlspecialchars($guest_data_from_db['phone_number_1'] ?? '');?>"></div>
                                 </div>
                             </div>
                         </div>
@@ -115,38 +125,58 @@ unset($_SESSION['rsvp_error_message']);
 
                     <?php if ($first_name_2_session): ?>
                     <div class="row mx-1 my-3">
-                        <h6><?php echo $first_name_2_session . ' ' . $last_name_2_session; ?> <span class="text-danger">*</span></h6>
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
+                        <h6><?php echo $first_name_2_session . ' ' . $last_name_2_session; ?></h6>
+                        <div class="row">
+                            <div class="col-auto">
                                 <div class="radio-group my-2">
-                                    <label class="me-2"><input type="radio" name="guest_2_attending" value="yes" required> Yes, will attend</label>
-                                    <label><input type="radio" name="guest_2_attending" value="no" required> No, cannot attend</label>
-                                    <div class="invalid-feedback">Please select an attendance option.</div>
+                                    <label class="me-2"><input type="radio" name="guest_2_attending" value="yes" <?php echo ($guest_data_from_db['guest_2_attending'] ?? false) ? 'checked' : ''; ?> required> Yes, will attend</label>
+                                    <label><input type="radio" name="guest_2_attending" value="no" <?php echo ($guest_data_from_db['guest_2_attending'] === 0) ? 'checked' : ''; ?> required> No, cannot attend</label>
+                                    <div class="invalid-feedback">Please select an option.</div>
                                 </div>
                             </div>
-                            <div class="col-md-8"> <div class="row">
-                                    <div class="col-lg-6 mb-2"><input type="email" class="form-control" name="email_2" placeholder="Email address"></div>
-                                    <div class="col-lg-6 mb-2"><input type="tel" class="form-control" name="phone_number_2" placeholder="Phone number"></div>
+                            <div class="col-auto">
+                                <div class="row">
+                                    <div class="col-auto"><input type="email" class="form-control" name="email_2" placeholder="Email address" value="<?php echo htmlspecialchars($guest_data_from_db['email_2'] ?? '');?>"></div>
+                                    <div class="col-auto"><input type="tel" class="form-control" name="phone_number_2" placeholder="Phone number" value="<?php echo htmlspecialchars($guest_data_from_db['phone_number_2'] ?? '');?>"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php endif; ?>
 
-                    <h5>Transportation <span class="text-danger">*</span></h5>
+                    <?php if ($plus_ones_allowed_session > 0): ?>
+                    <h5>Additional Guest(s)</h5>
+                    <p>Your invitation allows for <?php echo $plus_ones_allowed_session; ?> additional guest(s).</p>
+                    <div class="mb-3">
+                        <select name="plus_ones_attending_count" id="plus_ones_attending_count" class="form-select" style="width: auto;">
+                            <?php for ($i = 0; $i <= $plus_ones_allowed_session; $i++): ?>
+                            <option value="<?php echo $i; ?>" <?php echo (isset($guest_data_from_db['plus_ones_attending']) && $guest_data_from_db['plus_ones_attending'] == $i) ? 'selected' : ''; ?>><?php echo $i; ?> guest(s)</option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                    <?php endif; ?>
+
+                    <h5>Transportation</h5>
                     <p>Will your party need transportation to and from the hotel?</p>
                     <div class="mb-3">
                         <div class="radio-group my-2">
-                            <label class="me-2"><input type="radio" name="needs_transportation" value="yes" required> Yes</label>
-                            <label><input type="radio" name="needs_transportation" value="no" required> No</label>
+                            <label class="me-2"><input type="radio" name="needs_transportation" value="yes" <?php echo ($guest_data_from_db['needs_transportation'] ?? false) ? 'checked' : ''; ?> required> Yes</label>
+                            <label><input type="radio" name="needs_transportation" value="no" <?php echo ($guest_data_from_db['needs_transportation'] === 0) ? 'checked' : ''; ?> required> No</label>
                             <div class="invalid-feedback">Please select a transportation option.</div>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit RSVP</button>
+                    <h5>Dietary Restrictions and Allergies</h5>
+                    <div class="mb-3">
+                        <textarea name="dietary_restrictions" id="dietary_restrictions" rows="4" class="form-control" placeholder="e.g., gluten-free, nut allergy, etc."><?php echo htmlspecialchars($guest_data_from_db['dietary_restrictions'] ?? ''); ?></textarea>
+                    </div>
+                    <br>
+                    
+                    <button type="submit" class="btn <?php echo ($db_has_rsvpd && $guest_data_from_db) ? 'btn-secondary' : 'btn-primary'; ?>" <?php echo ($db_has_rsvpd && $guest_data_from_db) ? 'disabled' : ''; ?>>
+                        Submit RSVP
+                    </button>
                     </fieldset>
                 </form>
-                <?php endif; ?>
             </div>
         </div>
         <?php include("bottom.php");?>
