@@ -9,13 +9,14 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 }
 
 try {
-    if (! @include_once( __DIR__ . '/../db_secrets.php' ))
-        throw new Exception ('db_secrets.php does not exist');
-    else
-        $db_config = require_once __DIR__ . '/../db_secrets.php';
-}
-catch(Exception $e) {    
-    error_log("Database Configuration Error. Cannot open secrets.");
+    $secrets_file = __DIR__ . '/../db_secrets.php';
+    if (!is_readable($secrets_file)) {
+        throw new Exception('db_secrets.php does not exist or is not readable.');
+    }
+    $db_config = require $secrets_file;
+
+} catch(Exception $e) {
+    error_log("Database Configuration Error: " . $e->getMessage());
     $_SESSION['auth_error'] = 'A technical error occurred. This is Adam\'s fault.';
     header('Location: ' . $redirect);
     exit;
@@ -90,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Clear any previous auth errors
                 unset($_SESSION['auth_error']);
                 
-                header('Location: ' . $redirect); // Redirect to the main RSVP form
+                header('Location: guest_portal.php'); // Redirect to the main RSVP form
                 exit;
             }
         } else {
