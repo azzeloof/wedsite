@@ -66,8 +66,19 @@ if (isset($_POST['guest_1_attending'])) {
     $missing_data = true;
 }
 
-$email_1 = isset($_POST['email_1']) ? trim($_POST['email_1']) : null;
-$phone_number_1 = isset($_POST['phone_number_1']) ? trim($_POST['phone_number_1']) : null;
+if (isset('email_1')) {
+    $email_1 = trim($_POST['email_1']);
+} else {
+    $email_1 = null;
+    $missing_data = true;
+}
+
+if (isset('phone_number_1')) {
+    $phone_number_1 = trim($_POST['phone_number_1']);
+} else {
+    $phone_number_1 = null;
+    $missing_data = true;
+}
 
 // Guest 2 (process only if guest 2 exists based on session data)
 $guest_2_exists_in_session = !empty($_SESSION['first_name_2']);
