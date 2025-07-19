@@ -69,7 +69,12 @@ $guest_2_attending = null; // Default to null if guest 2 doesn't exist
 
 if ($guest_2_exists_in_session) {
     $guest_2_attending_raw = isset($_POST['guest_2_attending']) ? $_POST['guest_2_attending'] : null;
-    $guest_2_attending = ($guest_2_attending_raw === 'yes') ? 1 : 0;
+    if ($guest_2_attending_raw === 'yes') {
+        $guest_2_attending = 1;
+    } else if ($guest_2_attending_raw === 'no') {
+        $guest_2_attending = 0;
+    }
+    // if unset, remains null and should throw an error. This is a bit hacky.
 }
 
 $email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
