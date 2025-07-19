@@ -1,7 +1,38 @@
 <?php
 session_start();
 
-// 1. Check if user is authenticated
+$errors = [];
+
+// --- Validation Block ---
+
+if (empty($_POST['guest_1_attending'])) {
+    $errors[] = "Please select an attendance option for Guest 1.";
+}
+
+if (empty($_POST['email_1']) && empty($_POST['phone_number_1'])) {
+    $errors[] = "Please provide an email or phone number for Guest 1.";
+}
+
+if (isset($_SESSION['first_name_2']) && !empty($_SESSION['first_name_2'])) {
+    if (empty($_POST['guest_2_attending'])) {
+        $errors[] = "Please select an attendance option for Guest 2.";
+    }
+}
+
+if (empty($_POST['needs_transportation'])) {
+    $errors[] = "Please select a transportation option.";
+}
+
+// --- If there are errors, redirect back with a message ---
+if (!empty($errors)) {
+    // Join all error messages into a single string.
+    $_SESSION['rsvp_error_message'] = implode('<br>', $errors);
+    header('Location: guest_portal.php');
+    exit;
+}
+
+
+
 if (!isset($_SESSION['guest_id'])) {
     // Not authenticated or session expired, redirect to login
     $_SESSION['auth_error'] = "Your session has expired. Please log in again to RSVP.";
@@ -10,7 +41,6 @@ if (!isset($_SESSION['guest_id'])) {
 }
 $guest_id_from_session = (int)$_SESSION['guest_id'];
 
-// 2. Include Secure Database Configuration & Connect
 $db_config = require_once __DIR__ . '/../db_secrets.php';
 
 try {
@@ -28,13 +58,11 @@ try {
     exit;
 }
 
-// 3. Ensure it's a POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: guest_portal.php'); // Redirect if not POST
     exit;
 }
 
-// 4. Double-check if already RSVP'd (additional safeguard)
 try {
     $checkStmt = $pdo->prepare("SELECT has_rsvpd FROM guests WHERE guest_id = :guest_id");
     $checkStmt->execute(['guest_id' => $guest_id_from_session]);
@@ -55,7 +83,6 @@ try {
 }
 
 $missing_data = false;
-// 5. Retrieve and Process Form Data
 // Guest 1
 if (isset($_POST['guest_1_attending'])) {
     $guest_1_attending_raw = $_POST['guest_1_attending'];
@@ -131,7 +158,6 @@ if ($missing_data) {
     exit;
 }
 
-// 6. Update Database
 try {
     $updateSql = "UPDATE guests SET
                     guest_1_attending = :guest_1_attending,
