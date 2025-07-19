@@ -1,36 +1,26 @@
 <?php
-// submit_rsvp.php
 
 session_start();
 $errors = [];
 
-// --- Validation Block ---
-
-// 1. Guest 1 Attending
 if (empty($_POST['guest_1_attending'])) {
     $errors[] = "Please select an attendance option for Guest 1.";
 }
 
-// 2. Guest 1 Contact Info (at least one is required)
 if (empty($_POST['email_1']) && empty($_POST['phone_number_1'])) {
     $errors[] = "Please provide an email or phone number for Guest 1.";
 }
 
-// 3. Guest 2 Attending (only if Guest 2 exists on the invitation)
-// You'll need to fetch this from the DB or session to know if you should validate it.
-// Assuming you have a session variable for this:
 if (isset($_SESSION['first_name_2']) && !empty($_SESSION['first_name_2'])) {
     if (empty($_POST['guest_2_attending'])) {
         $errors[] = "Please select an attendance option for Guest 2.";
     }
 }
 
-// 4. Transportation
 if (empty($_POST['needs_transportation'])) {
     $errors[] = "Please select a transportation option.";
 }
 
-// --- If there are errors, redirect back with a message ---
 if (!empty($errors)) {
     // Join all error messages into a single string.
     $_SESSION['rsvp_error_message'] = implode('<br>', $errors);
@@ -38,7 +28,6 @@ if (!empty($errors)) {
     exit;
 }
 
-// 1. Check if user is authenticated
 if (!isset($_SESSION['guest_id'])) {
     // Not authenticated or session expired, redirect to login
     $_SESSION['auth_error'] = "Your session has expired. Please log in again to RSVP.";
@@ -47,7 +36,6 @@ if (!isset($_SESSION['guest_id'])) {
 }
 $guest_id_from_session = (int)$_SESSION['guest_id'];
 
-// 2. Include Secure Database Configuration & Connect
 $db_config = require_once __DIR__ . '/../db_secrets.php';
 
 try {
@@ -65,13 +53,11 @@ try {
     exit;
 }
 
-// 3. Ensure it's a POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: guest_portal.php'); // Redirect if not POST
     exit;
 }
 
-// 4. Double-check if already RSVP'd (additional safeguard)
 try {
     $checkStmt = $pdo->prepare("SELECT has_rsvpd FROM guests WHERE guest_id = :guest_id");
     $checkStmt->execute(['guest_id' => $guest_id_from_session]);
@@ -92,8 +78,6 @@ try {
 }
 
 $missing_data = false;
-// 5. Retrieve and Process Form Data
-// Guest 1
 if (isset($_POST['guest_1_attending'])) {
     $guest_1_attending_raw = $_POST['guest_1_attending'];
     $guest_1_attending = ($guest_1_attending_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
@@ -117,7 +101,6 @@ if (isset($_POST['phone_number_1'])) {
     $missing_data = true;
 }
 
-// Guest 2 (process only if guest 2 exists based on session data)
 $guest_2_exists_in_session = !empty($_SESSION['first_name_2']);
 $guest_2_attending = null; // Default to null if guest 2 doesn't exist
 
@@ -135,7 +118,7 @@ if ($guest_2_exists_in_session) {
 $email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
 $phone_number_2 = isset($_POST['phone_number_2']) ? trim($_POST['phone_number_2']) : null;
 
-// Plus Ones
+
 $plus_ones_allowed_from_session = isset($_SESSION['plus_ones_allowed']) ? (int)$_SESSION['plus_ones_allowed'] : 0;
 $plus_ones_attending_count = 0;
 if ($plus_ones_allowed_from_session > 0) {
@@ -149,7 +132,7 @@ if ($plus_ones_allowed_from_session > 0) {
     }
 }
 
-// Other fields
+
 if (isset($_POST['needs_transportation'])) {
     $needs_transportation_raw = $_POST['needs_transportation'];
     $needs_transportation = ($needs_transportation_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
@@ -204,24 +187,17 @@ try {
         $greeting_name .= " & " . $_SESSION['first_name_2'];
     }
 
-    // 7. Success Feedback and Session Update
     $_SESSION['rsvp_success_message'] = "Thank you, " . $greeting_name . "! Your RSVP has been successfully submitted.";
     $_SESSION['has_rsvpd'] = true; // Update session so portal page can hide the form
 
-    // Optional: Clear any temporary form data attempt from session
     if(isset($_SESSION['form_data_attempt'])) unset($_SESSION['form_data_attempt']);
 
     header('Location: guest_portal.php'); // Redirect back to portal (it will show success msg & no form)
-    // Alternatively, redirect to a dedicated thank_you.php page:
-    // header('Location: thank_you.php');
     exit;
 
 } catch (PDOException $e) {
     error_log("RSVP Submission DB Error: " . $e->getMessage() . " for guest ID: " . $guest_id_from_session . " with data: " . http_build_query($_POST));
     $_SESSION['rsvp_error_message'] = "We encountered a database problem while submitting your RSVP. Please make sure everything is filled out and try again, or contact us directly if the issue persists.";
-    
-    // Optional: Store submitted data in session to re-populate form upon redirect
-    // $_SESSION['form_data_attempt'] = $_POST; 
     
     header('Location: guest_portal.php');
     exit;
