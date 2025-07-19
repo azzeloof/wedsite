@@ -74,11 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ($normalized_db_last_name_2 !== null && $normalized_db_last_name_2 === $normalized_submitted_last_name)) {
             
             // Check if already RSVP'd
-            if ($invitation_details['has_rsvpd']) {
-                $_SESSION['auth_error'] = 'It looks like you have already RSVP\'d. If you need to make changes, please contact us directly.';
-                header('Location: guest_portal.php');
-                exit;
-            } else {
+            //if ($invitation_details['has_rsvpd']) {
+            //    $_SESSION['auth_error'] = 'It looks like you have already RSVP\'d. If you need to make changes, please contact us directly.';
+            //    header('Location: guest_portal.php');
+            //    exit;
+            //} else {
                 // Authentication successful, store details in session
                 $_SESSION['guest_id'] = $invitation_details['guest_id'];
                 $_SESSION['rsvp_code'] = $submitted_rsvp_code; // Could be useful
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 header('Location: guest_portal.php'); // Redirect to the main RSVP form
                 exit;
-            }
+            //}
         } else {
             // Code was correct, but last name didn't match records for that code
             $_SESSION['auth_error'] = 'The code is valid, but the last name does not match our records for that code. Please check your invitation.';
