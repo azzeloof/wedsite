@@ -58,7 +58,7 @@ try {
 // 5. Retrieve and Process Form Data
 // Guest 1
 $guest_1_attending_raw = isset($_POST['guest_1_attending']) ? $_POST['guest_1_attending'] : null;
-$guest_1_attending = ($guest_1_attending_raw === 'yes'); // true if 'yes', false otherwise
+$guest_1_attending = ($guest_1_attending_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
 
 $email_1 = isset($_POST['email_1']) ? trim($_POST['email_1']) : null;
 $phone_number_1 = isset($_POST['phone_number_1']) ? trim($_POST['phone_number_1']) : null;
