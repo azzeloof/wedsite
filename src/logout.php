@@ -20,6 +20,6 @@ session_destroy();
 
 // 4. Redirect to the login page.
 // Assumes rsvp_login.php is in the same directory.
-header('Location: guest_login.php');
+header('Location: index.php');
 exit; // Ensure no further code is executed after redirection.
 ?>

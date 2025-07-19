@@ -145,7 +145,7 @@ try {
 
 } catch (PDOException $e) {
     error_log("RSVP Submission DB Error: " . $e->getMessage() . " for guest ID: " . $guest_id_from_session . " with data: " . http_build_query($_POST));
-    $_SESSION['rsvp_error_message'] = "We encountered a database problem while submitting your RSVP. Please try again or contact us directly if the issue persists.";
+    $_SESSION['rsvp_error_message'] = "We encountered a database problem while submitting your RSVP. Please make sure everything is filled out and try again, or contact us directly if the issue persists.";
     
     // Optional: Store submitted data in session to re-populate form upon redirect
     // $_SESSION['form_data_attempt'] = $_POST; 
