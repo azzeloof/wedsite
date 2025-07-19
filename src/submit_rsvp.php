@@ -64,16 +64,16 @@ $email_1 = isset($_POST['email_1']) ? trim($_POST['email_1']) : null;
 $phone_number_1 = isset($_POST['phone_number_1']) ? trim($_POST['phone_number_1']) : null;
 
 // Guest 2 (process only if guest 2 exists based on session data)
-$guest_2_exists_in_session = !empty($_SESSION['first_name_2']); // Or however you track this
+$guest_2_exists_in_session = !empty($_SESSION['first_name_2']);
 $guest_2_attending = null; // Default to null if guest 2 doesn't exist
-
-$email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
-$phone_number_2 = isset($_POST['phone_number_2']) ? trim($_POST['phone_number_2']) : null;
 
 if ($guest_2_exists_in_session) {
     $guest_2_attending_raw = isset($_POST['guest_2_attending']) ? $_POST['guest_2_attending'] : null;
-    $guest_2_attending = ($guest_2_attending_raw === 'yes');
+    $guest_2_attending = ($guest_2_attending_raw === 'yes') ? 1 : 0;
 }
+
+$email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
+$phone_number_2 = isset($_POST['phone_number_2']) ? trim($_POST['phone_number_2']) : null;
 
 // Plus Ones
 $plus_ones_allowed_from_session = isset($_SESSION['plus_ones_allowed']) ? (int)$_SESSION['plus_ones_allowed'] : 0;
