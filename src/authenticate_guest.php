@@ -72,28 +72,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if submitted last name matches either stored last name
         if ($normalized_db_last_name_1 === $normalized_submitted_last_name ||
             ($normalized_db_last_name_2 !== null && $normalized_db_last_name_2 === $normalized_submitted_last_name)) {
-            
-            // Check if already RSVP'd
-            //if ($invitation_details['has_rsvpd']) {
-            //    $_SESSION['auth_error'] = 'It looks like you have already RSVP\'d. If you need to make changes, please contact us directly.';
-            //    header('Location: guest_portal.php');
-            //    exit;
-            //} else {
-                // Authentication successful, store details in session
-                $_SESSION['guest_id'] = $invitation_details['guest_id'];
-                $_SESSION['rsvp_code'] = $submitted_rsvp_code; // Could be useful
-                $_SESSION['first_name_1'] = $invitation_details['first_name_1'];
-                $_SESSION['last_name_1'] = $invitation_details['last_name_1'];
-                $_SESSION['first_name_2'] = $invitation_details['first_name_2'];
-                $_SESSION['last_name_2'] = $invitation_details['last_name_2'];
-                $_SESSION['plus_ones_allowed'] = $invitation_details['plus_ones_allowed'];
+    
+            // Authentication successful, store details in session
+            $_SESSION['guest_id'] = $invitation_details['guest_id'];
+            $_SESSION['rsvp_code'] = $submitted_rsvp_code; // Could be useful
+            $_SESSION['first_name_1'] = $invitation_details['first_name_1'];
+            $_SESSION['last_name_1'] = $invitation_details['last_name_1'];
+            $_SESSION['first_name_2'] = $invitation_details['first_name_2'];
+            $_SESSION['last_name_2'] = $invitation_details['last_name_2'];
+            $_SESSION['plus_ones_allowed'] = $invitation_details['plus_ones_allowed'];
                 
-                // Clear any previous auth errors
-                unset($_SESSION['auth_error']);
+            // Clear any previous auth errors
+            unset($_SESSION['auth_error']);
                 
-                header('Location: guest_portal.php'); // Redirect to the main RSVP form
-                exit;
-            //}
+            header('Location: guest_portal.php'); // Redirect to the main RSVP form
+            exit;
         } else {
             // Code was correct, but last name didn't match records for that code
             $_SESSION['auth_error'] = 'The code is valid, but the last name does not match our records for that code. Please check your invitation.';
