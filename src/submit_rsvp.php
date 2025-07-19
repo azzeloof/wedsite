@@ -54,11 +54,17 @@ try {
     exit;
 }
 
-
+$missing_data = false;
 // 5. Retrieve and Process Form Data
 // Guest 1
-$guest_1_attending_raw = isset($_POST['guest_1_attending']) ? $_POST['guest_1_attending'] : null;
-$guest_1_attending = ($guest_1_attending_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
+if (isset($_POST['guest_1_attending'])) {
+    $guest_1_attending_raw = $_POST['guest_1_attending'];
+    $guest_1_attending = ($guest_1_attending_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
+} else {
+    $guest_1_attending_raw = null;
+    $guest_1_attending = null;
+    $missing_data = true;
+}
 
 $email_1 = isset($_POST['email_1']) ? trim($_POST['email_1']) : null;
 $phone_number_1 = isset($_POST['phone_number_1']) ? trim($_POST['phone_number_1']) : null;
@@ -68,13 +74,14 @@ $guest_2_exists_in_session = !empty($_SESSION['first_name_2']);
 $guest_2_attending = null; // Default to null if guest 2 doesn't exist
 
 if ($guest_2_exists_in_session) {
-    $guest_2_attending_raw = isset($_POST['guest_2_attending']) ? $_POST['guest_2_attending'] : null;
-    if ($guest_2_attending_raw === 'yes') {
-        $guest_2_attending = 1;
-    } else if ($guest_2_attending_raw === 'no') {
-        $guest_2_attending = 0;
+    if (isset($_POST['guest_2_attending'])) {
+        $guest_2_attending_raw = $_POST['guest_2_attending'];
+        $guest_2_attending = ($guest_2_attending_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
+    } else {
+        $guest_2_attending_raw = null;
+        $guest_2_attending = null;
+        $missing_data = true;
     }
-    // if unset, remains null and should throw an error. This is a bit hacky.
 }
 
 $email_2 = isset($_POST['email_2']) ? trim($_POST['email_2']) : null;
@@ -95,10 +102,23 @@ if ($plus_ones_allowed_from_session > 0) {
 }
 
 // Other fields
-$needs_transportation_raw = isset($_POST['needs_transportation']) ? $_POST['needs_transportation'] : null;
-$needs_transportation = ($needs_transportation_raw === 'yes') ? 1 : 0;
+if (isset($_POST['needs_transportation'])) {
+    $needs_transportation_raw = $_POST['needs_transportation'];
+    $needs_transportation = ($needs_transportation_raw === 'yes') ? 1 : 0; // true if 'yes', false otherwise
+} else {
+    $needs_transportation_raw = null;
+    $needs_transportation = null;
+    $missing_data = true;
+}
+
+
 $dietary_restrictions = isset($_POST['dietary_restrictions']) ? trim($_POST['dietary_restrictions']) : null;
 
+if ($missing_data) {
+    $_SESSION['rsvp_error_message'] = "Please fill out all required fields.";
+    header('Location: guest_portal.php');
+    exit;
+}
 
 // 6. Update Database
 try {
