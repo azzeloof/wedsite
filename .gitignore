@@ -6,3 +6,4 @@ event_info.php
 /__pycache__/
 tools/guests.csv
 src/.htaccess
+tools/service_account.json

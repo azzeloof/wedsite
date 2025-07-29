@@ -1,4 +1,3 @@
-
 import mysql.connector
 import gspread
 from google.oauth2.service_account import Credentials
@@ -70,6 +69,10 @@ def update_google_sheet(data):
 
         # Write the data rows
         rows = [list(row.values()) for row in data]
+        for row in rows:
+            for i, cell in enumerate(row):
+                if hasattr(cell, 'isoformat'): # Check if it's a date/datetime object
+                    row[i] = cell.isoformat()
         worksheet.append_rows(rows)
         print(f"Wrote {len(rows)} data rows to the worksheet.")
 
