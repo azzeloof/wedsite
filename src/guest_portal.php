@@ -102,7 +102,6 @@ if (isset($_SESSION['rsvp_error_message'])) {
             <?php endif; ?>
             <hr>
             <div class="row my-3 portal-section" id="event-info">
-                <h2>Event Information</h2>
                 <?php 
                     if (file_exists(__DIR__ . '/../event_info.php')) {
                         include(__DIR__ . '/../event_info.php'); 
