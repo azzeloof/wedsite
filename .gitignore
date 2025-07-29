@@ -1,6 +1,7 @@
 localdeploy.sh
 db_secrets.php
 db_secrets.py
+spreadsheet_config.py
 event_info.php
 /__pycache__/
 tools/guests.csv
