@@ -3,7 +3,7 @@ db_secrets.php
 db_secrets.py
 spreadsheet_config.py
 event_info.php
-event_info_image.png
+src/event_info_image.png
 /__pycache__/
 tools/guests.csv
 src/.htaccess
