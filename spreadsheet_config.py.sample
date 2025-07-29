@@ -1,0 +1,4 @@
+SPREADSHEET_CONFIG = {
+    'GOOGLE_SHEET_NAME': "Your Google Sheet Name",
+    'WORKSHEET_NAME': "Sheet1"
+}
