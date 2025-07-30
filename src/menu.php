@@ -4,7 +4,7 @@
     <div>
         <?php
             if($pg!='') {
-                echo("<h3 class='float-md-start mb-0'><a href='/' style='text-decoration:none; color:#000;'>Adam & Sara Are Getting Married</a></h3>");
+                echo("<h3 class='float-md-start mb-0'><a href='/' style='text-decoration:none; color:#000;'>Sara & Adam Are Getting Married</a></h3>");
             }
         ?>
         <nav class="nav <?php echo $nav_class ?> justify-content-center float-md-end">

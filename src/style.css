@@ -2,7 +2,6 @@
  * Globals
  */
 
-
 /* Custom default button */
 .btn-light,
 .btn-light:hover,
@@ -19,8 +18,22 @@ a {
  * Base structure
  */
 
+h1, h2, h3, h4, h5, h6 {
+  /*
+  font-family: "p22-underground", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  */
+  font-family: "p22-underground", "Raleway", sans-serif;
+  font-weight: 400;
+  font-style: normal; 
+}
+
+
 body {
-  font-family: "Raleway", serif !important;
+  font-family: "p22-underground", "Raleway", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   opacity: 0;
   transition: opacity 0.5s;
   min-width: 500px;
@@ -46,6 +59,10 @@ body:before {
   background-size: cover;
   background-position: bottom;
 
+}
+
+.bio {
+  font-size: 18px;
 }
 
 /*
