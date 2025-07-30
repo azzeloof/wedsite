@@ -11,16 +11,16 @@
         <div class="row">
             <div class="col text-end">
                 <h3>Sara Adkins</h3>
-                <p>is a machine learning researcher, software engineer, and musician. She is a classically-trained guitarist and violist, and often performs experimental music sets incorporating live coding, generative AI, and conventional instruments.</p>
-                <p>She loves playing tabletop games like Dungeons and Dragons, board games, and videogames (especially Pokemon, hence the Pokeball ring box). She's also a knitter, runner, and traveler, often finding ways to combine her passions, like the time she flew to London to run a half marathon (although she's yet to knit something while running) (she did, however, knit the hat Adam is wearing in the photo!).</p>
+                <p class="bio">is a machine learning researcher, software engineer, and musician. She is a classically-trained guitarist and violist, and often performs experimental music sets incorporating live coding, generative AI, and conventional instruments.</p>
+                <p class="bio">She loves playing tabletop games like Dungeons and Dragons, board games, and videogames (especially Pokemon, hence the Pokeball ring box). She's also a knitter, runner, and traveler, often finding ways to combine her passions, like the time she flew to London to run a half marathon (although she's yet to knit something while running) (she did, however, knit the hat Adam is wearing in the photo!).</p>
             </div>
             <div class="col-md-4">
                 <img src="/images/engagement.jpg" class="img-fluid" alt="..." style="border-radius: var(--bs-border-radius)">
             </div>
             <div class="col text-start">
                 <h3>Adam Zeloof</h3>
-                <p>is just some guy. Just kidding, he actually is a very cool guy who knows how to do anything and everything. His degree says mechanical engineer but he's also an electrical engineer, jewelry designer, photographer, website designer (including this one), IT expert, piano player, spreadsheet maker, radio operator, baker, watch enthusiast and cat parent.</p>
-                <p>Adam always says that everyone frustrates him, but don't be fooled he is very thoughtful and loyal to his friends and family. He moved to the UK for a year to be with Sara during grad school, and remembers all the little details about his friends. He loves Star Trek even though Sara won't watch it with him, and despite being a homebody he enjoys exploring the world with Sara.</p>
+                <p class="bio">is just some guy. Just kidding, he actually is a very cool guy who knows how to do anything and everything. His degree says mechanical engineer but he's also an electrical engineer, jewelry designer, photographer, website designer (including this one), IT expert, piano player, spreadsheet maker, radio operator, baker, watch enthusiast and cat parent.</p>
+                <p class="bio">Adam always says that everyone frustrates him, but don't be fooled he is very thoughtful and loyal to his friends and family. He moved to the UK for a year to be with Sara during grad school, and remembers all the little details about his friends. He loves Star Trek even though Sara won't watch it with him, and despite being a homebody he enjoys exploring the world with Sara.</p>
             </div>
         </div>
 
