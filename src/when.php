@@ -25,9 +25,9 @@
                     <!--<h3>10:00 am: Breakfast</h3>
                     <p>Egg sandwiches, tea and coffee</p>-->
                     <h3>11:00 am - Pumpkin Carving</h3>
-                    <p>Tools and pumpkins provided; prizes for the best pumpkins will be awarded by an elite panel of judges (Adam and Sara)</p>
+                    <p>Tools and pumpkins provided; prizes for the best pumpkins will be awarded by an elite panel of judges (Adam and Sara).</p>
                     <h3>1:00 pm - Barn Jam</h3>
-                    <p>Join the house band BTE for a concert in the barn featuring our friends and family (yes thats you!). Reach out to Adam or Sara to add your performance to the set list, or come as an audience member. We'll have plently of instruments available to borrow. There will also be leftover wedding food and/or pizza for lunch! </p>
+                    <p>Join the house band BTE for a concert in the barn featuring our friends and family (yes that's you!). Reach out to Adam or Sara to add your performance to the set list, or come as an audience member. We'll have plenty of instruments available to borrow. There will also be leftover wedding food and/or pizza for lunch! </p>
                     <h3>4:00 pm - Barn Jam Ends</h3>
                 </div>
             </div>
