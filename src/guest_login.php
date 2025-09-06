@@ -8,6 +8,7 @@
             <div class="modal-body">
                 <div class="row">
                     <p>Enter your last name and login code (from the invitation you received) to unlock the RSVP form, along with extra info.</p>
+                    <p>We sent out invites at the end of July. If have a save the date and your invitation hasn't arrived please reach out to us to get your code!</p>
                     <p>If you are unable to log in, just reach out to Adam or Sara. Adam wrote this RSVP handler system himself so it probably doesn't work very well.</p>
                     <div>
 
