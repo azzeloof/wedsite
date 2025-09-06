@@ -16,8 +16,9 @@
                     <p>Hors d'oeuvres, drinks and lawn games on the back patio</p>
                     <h3>5:00 pm - Reception</h3>
                     <p>Dinner buffet, live music and dancing in the barn</p>
-                    <h3>10:30 pm - Late Night Snack</h3>
+                    <h3>10:00 pm - Late Night Snack</h3>
                     <p>Food truck and closing DJ set in the barn</p>
+                    <h3>11:00 pm - Reception Ends</h3>
 
                     <h1>Sunday October 12<sup>th</sup>, 2025</h1>
                     <p>If you'd like to stick around for some of Sunday (Monday is a holiday), we'll be hanging out at the farm all day for pumpkin carving, and a Barn Jam concert in the afternoon.</p>
