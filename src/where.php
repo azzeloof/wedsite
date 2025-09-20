@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row my-3">
-                        <p>The exact address will be printed on your invitation, and is available in the <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" role="button">Guest Portal</a>. We sent out invites at the end of July. If you received a Save the Date and your invitation hasn't arrived please reach out to Adam or Sara to get your RSVP code! <b>The RSVP deadline is September 12th.</b></p>
+                        <p>The exact address will be printed on your invitation, and is available in the <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" role="button">Guest Portal</a>. RSVPs are now closed as of Septembler 12th!</p>
                         <h2>Travel</h2>
                         <p>The closest major airports are Philadelphia (PHL) and Newark (EWR) (Sergeantsville is about an hour drive from each). For international travelers, JFK is also a good option.</p>
                         <p>There's also a tiny airport in Ewing (TTN- 25 minutes from the farm). If you're flying American, you can actually book a flight through there (which is five minutes from the SpringHill Suites hotel). They operate three shuttle busses from TTN to PHL each day, and for the return trip you can even go through security and check bags at TTN. More info <a href="https://www.aa.com/i18n/travel-info/experience/landline.jsp" target="blank">here</a>. Frontier also operates out of there.</p>
